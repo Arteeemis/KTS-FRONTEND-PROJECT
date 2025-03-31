@@ -1,0 +1,104 @@
+/* src/pages/ProductPage.scss */
+
+// Variables
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$background-color: #f8f8f8;
+$text-color: #333;
+$border-color: #ccc;
+$border-radius: 8px;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin responsive-grid($min-width) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+  gap: 20px;
+}
+
+@mixin image-button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  @include flex-center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+// Styles
+.page {
+  font-family: sans-serif;
+  background-color: $background-color;
+  color: $text-color;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.backLink {
+  @include flex-center;
+  margin-bottom: 20px;
+  cursor: pointer;
+
+  svg {
+    margin-right: 5px;
+  }
+}
+
+.productDetails {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.productImage {
+  flex: 1;
+  position: relative;
+
+  img {
+    width: 100%;
+    border-radius: $border-radius;
+  }
+}
+
+.imageControls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 10px;
+}
+
+.imageButton {
+  @include image-button; // Using the mixin
+}
+
+.productInfo {
+  flex: 1;
+}
+
+.productActions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.relatedItems {
+  margin-bottom: 40px;
+}
+
+.cardGrid {
+  @include responsive-grid(300px); // Using the mixin for responsive grid
+}

@@ -1,0 +1,16 @@
+.loader-container {
+  margin: 5px;
+  &.rotate {
+    animation: rotate 1s linear infinite;
+    transform-origin: center center;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

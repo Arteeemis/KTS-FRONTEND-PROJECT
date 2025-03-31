@@ -1,0 +1,42 @@
+@import "styles/variables";
+
+$header-bg-color: #f8f8f8;
+$header-text-color: #333;
+$header-icon-color: #555;
+
+.header {
+  display: flex;
+  height: 90px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+
+  .logo {
+    width: 100px; // Adjust as needed
+  }
+
+  .header-nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .header-link {
+    text-decoration: none;
+    color: $header-text-color;
+    font-weight: bold;
+    &:hover {
+      color: $color-brand;
+    }
+  }
+
+  .header-right {
+    display: flex;
+    gap: 1rem;
+    margin-right: 60px;
+  }
+
+  .header-icon {
+    text-decoration: none;
+    color: $header-icon-color;
+  }
+}

@@ -1,0 +1,80 @@
+@import "styles/variables";
+$font-color: #333;
+$secondary-color: #666;
+$border-color: #ccc;
+$active-bg-color: #eee;
+
+.main-page {
+  font-family: sans-serif;
+  color: $font-color;
+  background-color: #fafafa;
+}
+
+.content {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.description {
+  text-align: center;
+  color: $secondary-color;
+  margin-bottom: 50px;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-right: 0;
+  justify-content: space-between;
+}
+
+.filter-bar {
+  margin-bottom: 20px;
+}
+
+.product-count {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 60px;
+  padding-bottom: $spacing-xl;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+
+  span {
+    padding: 5px 10px;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .active {
+    background-color: $border-color;
+    font-weight: bold;
+  }
+}
+
+.dd {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.butex {
+  width: 137px;
+}
