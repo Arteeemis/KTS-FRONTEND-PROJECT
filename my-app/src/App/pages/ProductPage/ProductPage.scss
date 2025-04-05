@@ -1,104 +1,122 @@
-/* src/pages/ProductPage.scss */
+@import "styles/variables";
 
-// Variables
-$primary-color: #007bff;
-$secondary-color: #6c757d;
-$background-color: #f8f8f8;
-$text-color: #333;
-$border-color: #ccc;
-$border-radius: 8px;
-$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-// Mixins
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-}
-
-@mixin responsive-grid($min-width) {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
-  gap: 20px;
-}
-
-@mixin image-button {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  @include flex-center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-// Styles
-.page {
+.product-page {
   font-family: sans-serif;
   background-color: $background-color;
-  color: $text-color;
-}
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
+  &__content {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-.backLink {
-  @include flex-center;
-  margin-bottom: 20px;
-  cursor: pointer;
+  &__back {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+  }
 
-  svg {
-    margin-right: 5px;
+  &__back-link {
+    text-decoration: none;
+  }
+
+  &__back-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  &__loading {
+    margin-top: 200px;
+    text-align: center;
   }
 }
 
-.productDetails {
+.product-details {
   display: flex;
-  gap: 30px;
-  margin-bottom: 40px;
-}
+  gap: 50px;
+  margin-top: 30px;
 
-.productImage {
-  flex: 1;
-  position: relative;
+  &__image {
+    flex: 1;
+    position: relative;
 
-  img {
-    width: 100%;
-    border-radius: $border-radius;
+    &-img {
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 10px;
+  }
+
+  &__control-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  &__control-icon {
+    &--next {
+      transform: rotate(-90deg);
+    }
+    &--prev {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__info {
+    flex: 1;
+  }
+
+  &__description {
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  &__price {
+    margin-top: 40px;
+  }
+
+  &__actions {
+    margin-top: 40px;
+    display: flex;
+    gap: 40px;
+  }
+
+  &__add-button {
+    border: solid rgb(170, 170, 170) 2px;
+    background-color: $input-bg;
+    color: $text-primary;
+
+    &:hover {
+      background-color: $button-primary-bg-disabled !important;
+    }
   }
 }
 
-.imageControls {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  padding: 0 10px;
-}
-
-.imageButton {
-  @include image-button; // Using the mixin
-}
-
-.productInfo {
-  flex: 1;
-}
-
-.productActions {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-}
-
-.relatedItems {
+.related-products {
+  margin-top: 40px;
   margin-bottom: 40px;
-}
 
-.cardGrid {
-  @include responsive-grid(300px); // Using the mixin for responsive grid
+  &__title {
+    margin-bottom: 40px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
 }

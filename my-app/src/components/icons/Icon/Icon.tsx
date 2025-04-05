@@ -1,9 +1,28 @@
 import * as React from 'react';
+import classNames from 'classnames';
 import './Icon.scss';
+
+// Выносим enum цветов
+export enum IconColor {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Accent = 'accent',
+  Disabled = 'disabled',
+  White = 'white',
+}
+
+// Конфигурация соответствия цветов классам
+const colorToClassMap: Record<IconColor, string> = {
+  [IconColor.Primary]: 'icon-primary',
+  [IconColor.Secondary]: 'icon-secondary',
+  [IconColor.Accent]: 'icon-accent',
+  [IconColor.Disabled]: 'icon-disabled',
+  [IconColor.White]: 'icon-white',
+};
 
 export type IconProps = React.SVGAttributes<SVGElement> & {
   className?: string;
-  color?: 'primary' | 'secondary' | 'accent' | 'disabled' | 'white';
+  color?: IconColor;
   width?: number;
   height?: number;
 };
@@ -16,25 +35,8 @@ const Icon: React.FC<React.PropsWithChildren<IconProps>> = ({
   stroke,
   ...props
 }) => {
-  const getColorClass = (color?: 'primary' | 'secondary' | 'accent' | 'disabled' | 'white') => {
-    switch (color) {
-      case 'primary':
-        return 'icon-primary';
-      case 'secondary':
-        return 'icon-secondary';
-      case 'accent':
-        return 'icon-accent';
-      case 'disabled':
-        return 'icon-disabled';
-      case 'white':
-        return 'icon-white';
-      default:
-        return 'currentColor';
-    }
-  };
-
-  const colorClass = getColorClass(color);
-  const combinedClassName = ['icon', className, colorClass].filter(Boolean).join(' ');
+  const colorClass = color ? colorToClassMap[color] : 'currentColor';
+  const combinedClassName = classNames('icon', className, colorClass);
 
   return <svg className={combinedClassName} width={width} height={height} {...props} />;
 };

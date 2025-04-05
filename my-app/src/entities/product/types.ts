@@ -4,6 +4,6 @@ export interface Product {
   image: string;
   title: string;
   subtitle: string;
-  description: string; // Сделаем description необязательным
+  description: string;
   price: string;
 }

@@ -1,92 +1,55 @@
-// src/context/ProductContext.tsx
-import React, { createContext, useState, useEffect, useContext, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode, useState, useMemo } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firestore';
-import {
-  collection,
-  getDocs,
-  doc,
-  getDoc,
-  Firestore,
-  CollectionReference,
-  DocumentData,
-  DocumentSnapshot,
-} from 'firebase/firestore';
-import { Product } from '../types/Product';
+import { Product } from 'entities/product/types';
 
 interface ProductContextType {
-  products: Product[];
+  product: Product | null;
   loading: boolean;
   error: Error | null;
-  fetchProductById: (id: string) => Promise<Product | null>;
+  fetchProduct: (id: string) => Promise<void>;
 }
 
-export const ProductContext = createContext<ProductContextType | undefined>(undefined);
+export const ProductContext = createContext<ProductContextType | null>(null);
 
-interface ProductProviderProps {
-  children: ReactNode;
-}
-
-export const ProductProvider = ({ children }: ProductProviderProps) => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+export const ProductProvider = ({ children }: { children: ReactNode }) => {
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const fetchProducts = async () => {
+  const fetchProduct = async (id: string) => {
     setLoading(true);
+    setError(null);
     try {
-      const productsCollection = collection(db, 'Products');
-      const querySnapshot = await getDocs(productsCollection as CollectionReference<DocumentData>);
+      const docRef = doc(db, 'Products', id);
+      const docSnap = await getDoc(docRef);
 
-      const productList: Product[] = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as Product[];
-
-      setProducts(productList);
-    } catch (e: any) {
-      setError(e);
-      console.error('Error fetching products:', e);
+      if (docSnap.exists()) {
+        setProduct({ id: docSnap.id, ...docSnap.data() } as Product);
+      } else {
+        setError(new Error('Product not found'));
+      }
+    } catch (e) {
+      setError(e instanceof Error ? e : new Error('Failed to fetch product'));
     } finally {
       setLoading(false);
     }
   };
 
-  const fetchProductById = async (id: string): Promise<Product | null> => {
-    try {
-      const productDocRef = doc(db, 'Products', id);
-      console.log(id);
-      const docSnap: DocumentSnapshot<DocumentData> = await getDoc(productDocRef);
-
-      if (docSnap.exists()) {
-        const productData = docSnap.data();
-        return { id: docSnap.id, ...productData } as Product;
-      } else {
-        console.log('No such document!');
-        return null;
-      }
-    } catch (e: any) {
-      setError(e);
-      console.error('Error fetching product:', e);
-      return null;
-    }
-  };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const value: ProductContextType = {
-    products,
-    loading,
-    error,
-    fetchProductById,
-  };
+  const value = useMemo(
+    () => ({
+      product,
+      loading,
+      error,
+      fetchProduct,
+    }),
+    [product, loading, error],
+  );
 
   return <ProductContext.Provider value={value}>{children}</ProductContext.Provider>;
 };
 
-// Custom hook to use the product context
-export const useProductContext = (): ProductContextType => {
+export const useProductContext = () => {
   const context = useContext(ProductContext);
   if (!context) {
     throw new Error('useProductContext must be used within a ProductProvider');

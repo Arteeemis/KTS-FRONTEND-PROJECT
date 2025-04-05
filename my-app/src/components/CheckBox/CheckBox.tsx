@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-
+import { IconColor } from 'components/icons/Icon';
 import CheckIcon from 'components/icons/CheckIcon';
 import 'styles/_variables.scss';
 import './CheckBox.scss';
@@ -28,7 +28,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
     }
   };
 
-  const iconColor = disabled ? 'disabled' : 'accent';
+  const iconColor = disabled ? IconColor.Disabled : IconColor.Accent;
 
   return (
     <label

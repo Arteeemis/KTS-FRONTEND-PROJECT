@@ -1,13 +1,62 @@
 @import "styles/variables";
-$font-color: #333;
-$secondary-color: #666;
-$border-color: #ccc;
-$active-bg-color: #eee;
 
 .main-page {
   font-family: sans-serif;
-  color: $font-color;
   background-color: #fafafa;
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 60px;
+  }
+
+  &__title {
+    text-align: center;
+    margin: 0;
+  }
+
+  &__description {
+    text-align: center;
+    max-width: 637px;
+    margin: 0;
+  }
+
+  &__loading {
+    margin-top: 200px;
+    text-align: center;
+  }
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__bar {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+  }
+
+  &__button {
+    min-width: 137px;
+  }
+
+  &__filter {
+    max-width: 300px;
+  }
+
+  &__items-count {
+    margin-top: $spacing-s;
+    font-weight: bold;
+    font-size: 32px;
+    &-highlight {
+      color: #518581;
+    }
+  }
 }
 
 .content {
@@ -16,65 +65,37 @@ $active-bg-color: #eee;
   margin: 0 auto;
 }
 
-.title {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.description {
-  text-align: center;
-  color: $secondary-color;
-  margin-bottom: 50px;
-}
-
-.search-bar {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  padding-right: 0;
-  justify-content: space-between;
-}
-
-.filter-bar {
-  margin-bottom: 20px;
-}
-
-.product-count {
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
 .product-grid {
+  margin-top: $spacing-xl;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 60px;
   padding-bottom: $spacing-xl;
+  &__link {
+    text-decoration: none;
+    color: inherit;
+  }
 }
 
 .pagination {
+  font-family: "Segoe UI Variable", sans-serif;
   display: flex;
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
 
-  span {
-    padding: 5px 10px;
-    border: 1px solid $border-color;
-    border-radius: 5px;
+  &__item {
+    padding: 10px;
     cursor: pointer;
+
+    &--active {
+      background-color: $color-brand;
+      color: white;
+      font-weight: bold;
+    }
   }
-
-  .active {
-    background-color: $border-color;
-    font-weight: bold;
+  &__arrow {
+    width: 35px;
+    height: 35px;
   }
-}
-
-.dd {
-  width: 300px;
-  margin-bottom: 20px;
-}
-
-.butex {
-  width: 137px;
 }

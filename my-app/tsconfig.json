@@ -5,7 +5,9 @@
       "components": ["components/*"],
       "config": ["config/*"],
       "styles": ["styles/*"],
-      "utils": ["utils/*"]
+      "utils": ["utils/*"],
+      "contexts": ["contexts/*"],
+      "entities": ["entities/*"]
     }
   },
   "files": [],

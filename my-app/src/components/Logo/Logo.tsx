@@ -6,7 +6,14 @@ export type LogoProps = {
 
 const Logo: React.FC<LogoProps> = ({ className = '' }) => {
   return (
-    <svg width="131" height="42" viewBox="0 0 131 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      className={className}
+      width="131"
+      height="42"
+      viewBox="0 0 131 42"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <g clip-path="url(#clip0_502_629)">
         <path
           d="M32.9035 20.601L31.9655 24.101H13.6535L8.66949 5.50549H12.2955L16.338 20.601H32.9035Z"

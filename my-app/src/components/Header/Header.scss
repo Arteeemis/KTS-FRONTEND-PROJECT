@@ -8,25 +8,30 @@ $header-icon-color: #555;
   display: flex;
   height: 90px;
   justify-content: space-between;
+  padding: 0 0.5em 0 0.5em;
   align-items: center;
   background-color: #fff;
+  box-shadow: 0px 2px 0px #f3f3f3;
 
   .logo {
-    width: 100px; // Adjust as needed
+    overflow: visible;
+  }
+
+  .icons {
+    width: 132px;
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing-xl;
   }
 
   .header-nav {
     display: flex;
-    gap: 2rem;
+    gap: $spacing-xl;
   }
 
   .header-link {
     text-decoration: none;
     color: $header-text-color;
-    font-weight: bold;
-    &:hover {
-      color: $color-brand;
-    }
   }
 
   .header-right {

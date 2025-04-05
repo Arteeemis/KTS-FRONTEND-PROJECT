@@ -55,7 +55,8 @@
 
   &-image {
     background-color: #d9d9d9;
+    aspect-ratio: 1 / 1;
     width: 100%;
-    object-fit: cover; // Масштабирование изображения для заполнения контейнера
+    object-fit: cover;
   }
 }

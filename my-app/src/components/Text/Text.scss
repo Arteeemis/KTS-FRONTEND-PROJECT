@@ -4,6 +4,7 @@
   font-family: $font-family;
   text-align: left;
   font-weight: 400;
+  margin: 0;
 
   &-title {
     font-size: 44px;
@@ -64,6 +65,16 @@
     &-accent {
       color: $text-accent;
     }
+  }
+}
+
+.nav {
+  &:hover {
+    color: $color-brand;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 40px;
+    overflow: visible;
   }
 }
 

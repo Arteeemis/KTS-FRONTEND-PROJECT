@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import './Input.scss';
 import 'styles/_variables.scss';
 
@@ -13,14 +14,11 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onCh
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ value, onChange, afterSlot, type = 'text', className = '', disabled, placeholder, ...rest }, ref) => {
-    const wrapperClassNames = [
-      'input-wrapper',
-      className,
-      disabled ? 'input-disabled' : '',
-      value ? 'input-not-empty' : 'input-empty',
-    ]
-      .filter(Boolean)
-      .join(' ');
+    const wrapperClassNames = classNames('input-wrapper', className, {
+      'input-disabled': disabled,
+      'input-not-empty': value,
+      'input-empty': !value,
+    });
 
     return (
       <div className={wrapperClassNames}>

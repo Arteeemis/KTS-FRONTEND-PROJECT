@@ -3,6 +3,7 @@ import './MultiDropDown.scss';
 import Input from 'components/Input';
 import Text from 'components/Text';
 import ArrowDownIcon from 'components/icons/ArrowDownIcon';
+import { IconColor } from 'components/icons/Icon';
 import 'styles/_variables.scss';
 
 export type Option = {
@@ -67,9 +68,9 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ className, options, value
         value={value.length ? getTitle(value) : currentInput}
         onClick={() => !disabled && setIsOpen(true)}
         onChange={handleInputChange}
-        placeholder={getTitle(value)}
+        placeholder="Filter"
         disabled={disabled}
-        afterSlot={<ArrowDownIcon color="secondary" />}
+        afterSlot={<ArrowDownIcon color={IconColor.Secondary} />}
       />
 
       {isOpen && !disabled && (
