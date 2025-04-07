@@ -1,11 +1,14 @@
-import { routesConfig } from "./config/routes";
-import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { routesConfig } from './config/routes';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router';
+import { BrowserRouter } from 'react-router-dom'; // Добавьте это
 
 const router = createBrowserRouter(routesConfig);
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLDivElement,
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLDivElement);
 
-root.render(<RouterProvider router={router} />);
+root.render(
+  <BrowserRouter>
+    <RouterProvider router={router} />
+  </BrowserRouter>,
+);
