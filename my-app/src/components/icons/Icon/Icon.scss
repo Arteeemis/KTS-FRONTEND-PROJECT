@@ -1,0 +1,31 @@
+@import "styles/variables";
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  stroke: $text-primary;
+
+  &-primary {
+    stroke: $text-primary;
+    fill: $text-primary;
+  }
+
+  &-secondary {
+    stroke: $text-secondary;
+    fill: $text-secondary;
+  }
+
+  &-accent {
+    stroke: $text-accent;
+    fill: $text-accent;
+  }
+
+  &-disabled {
+    stroke: $color-disabled;
+    fill: $color-disabled;
+  }
+
+  &-white {
+    stroke: $checkbox-bg;
+    fill: $checkbox-bg;
+  }
+}
