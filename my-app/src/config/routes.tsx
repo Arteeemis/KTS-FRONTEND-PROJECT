@@ -2,8 +2,6 @@ import { Navigate, RouteObject } from 'react-router';
 import App from '../App';
 import CatalogPage from '../App/pages/CatalogPage';
 import ProductPage from '../App/pages/ProductPage';
-import { CatalogProvider } from 'contexts/CatalogContext';
-import { ProductProvider } from 'contexts/ProductContext';
 
 export const routes = {
   main: {
@@ -27,19 +25,11 @@ export const routesConfig: RouteObject[] = [
       },
       {
         path: routes.main.mask,
-        element: (
-          <CatalogProvider>
-            <CatalogPage />
-          </CatalogProvider>
-        ),
+        element: <CatalogPage />,
       },
       {
         path: routes.product.mask,
-        element: (
-          <ProductProvider>
-            <ProductPage />
-          </ProductProvider>
-        ),
+        element: <ProductPage />,
       },
       {
         path: '*',
