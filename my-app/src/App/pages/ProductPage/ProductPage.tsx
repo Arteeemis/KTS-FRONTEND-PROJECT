@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
 import { useParams } from 'react-router';
 import Header from 'components/Header';
 import BackLink from './components/BackLink';
@@ -7,21 +8,20 @@ import ProductInfo from './components/ProductInfo';
 import ProductActions from './components/ProductActions';
 import RelatedItems from './components/RelatedItems';
 import Text from 'components/Text';
-import './ProductPage.scss';
-import { useProductContext } from 'contexts/ProductContext';
+import { productStore } from '../../../store/ProductStore/ProductStore';
 import { mockProducts } from 'entities/product/mocks/data';
+import './ProductPage.scss';
 
-const ProductPage: React.FC = () => {
+const ProductPage: React.FC = observer(() => {
   const { id } = useParams<{ id: string }>();
-  const { product, loading, error, fetchProduct } = useProductContext();
 
   useEffect(() => {
-    if (id && (!product || product.id !== id)) {
-      fetchProduct(id);
+    if (id && (!productStore.currentProduct || productStore.currentProduct.id !== id)) {
+      productStore.fetchProduct(id);
     }
-  }, [id, product, fetchProduct]);
+  }, [id]);
 
-  if (loading) {
+  if (productStore.loading) {
     return (
       <Text className="product-page__loading" view="title">
         Loading product details...
@@ -29,11 +29,11 @@ const ProductPage: React.FC = () => {
     );
   }
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
+  if (productStore.error) {
+    return <div>Error: {productStore.error.message}</div>;
   }
 
-  if (!product) {
+  if (!productStore.currentProduct) {
     return <div>Product not found.</div>;
   }
 
@@ -43,16 +43,16 @@ const ProductPage: React.FC = () => {
       <div className="product-page__content">
         <BackLink />
         <div className="product-details">
-          <ProductImage product={product} />
+          <ProductImage product={productStore.currentProduct} />
           <div className="product-details__info">
-            <ProductInfo product={product} />
-            <ProductActions product={product} />
+            <ProductInfo product={productStore.currentProduct} />
+            <ProductActions product={productStore.currentProduct} />
           </div>
         </div>
         <RelatedItems products={mockProducts} />
       </div>
     </div>
   );
-};
+});
 
 export default ProductPage;

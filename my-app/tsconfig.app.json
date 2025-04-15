@@ -13,7 +13,8 @@
       "styles": ["styles/*"],
       "utils": ["utils/*"],
       "contexts": ["contexts/*"],
-      "entities": ["entities/*"]
+      "entities": ["entities/*"],
+      "store": ["store/*"]
     },
 
     /* Bundler mode */
