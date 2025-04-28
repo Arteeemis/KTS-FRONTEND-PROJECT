@@ -1,0 +1,153 @@
+@import "styles/variables"; // Убедитесь, что путь к variables правильный
+
+$header-bg-color: #f8f8f8;
+$header-text-color: #333;
+$header-icon-color: #555;
+$screen-sm-max: 768px;
+
+.header {
+  display: flex;
+  height: 90px;
+  justify-content: space-between;
+  padding: 0 0.5em;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0px 2px 0px #f3f3f3;
+
+  .logo {
+    overflow: visible;
+  }
+
+  .icons {
+    width: 132px;
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing-xl;
+  }
+
+  .header-nav {
+    display: flex;
+    gap: $spacing-xl;
+
+    @media (max-width: $screen-sm-max) {
+      display: none;
+    }
+  }
+
+  .header-link {
+    text-decoration: none;
+    color: $header-text-color;
+  }
+
+  .header-icon {
+    text-decoration: none;
+    color: $header-icon-color;
+  }
+
+  /*  Стили для бургер-меню (иконка) */
+  .burger-menu-icon {
+    display: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    position: relative; /*  Нужен для позиционирования полосок */
+    background: none;
+    border: none;
+    padding: 0;
+    margin-top: 4px;
+
+    @media (max-width: $screen-sm-max) {
+      display: block;
+    }
+
+    /*  Стили для полосок */
+    span {
+      display: block;
+      position: absolute;
+      height: 1.5px;
+      width: 100%;
+      background: $header-text-color; /*  Цвет полосок */
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: 0.25s ease-in-out;
+
+      &:nth-child(1) {
+        top: 0px;
+      }
+
+      &:nth-child(2) {
+        top: 10px;
+      }
+
+      &:nth-child(3) {
+        top: 20px;
+      }
+    }
+
+    /*  Стили для крестика, когда меню открыто */
+    &.open {
+      span {
+        &:nth-child(1) {
+          top: 10px;
+          transform: rotate(135deg);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:nth-child(3) {
+          top: 10px;
+          transform: rotate(-135deg);
+        }
+      }
+    }
+  }
+
+  .header-nav--mobile {
+    z-index: 10;
+    background-color: white;
+    display: none;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: $spacing-m 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+
+    &.is-open {
+      display: flex;
+    }
+
+    .header-link {
+      padding: $spacing-s $spacing-m;
+      display: block;
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .nav--mobile {
+    &:hover {
+      color: $color-brand;
+    }
+  }
+}
+
+.nav {
+  &:hover {
+    color: $color-brand;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 40px;
+    overflow: visible;
+  }
+}

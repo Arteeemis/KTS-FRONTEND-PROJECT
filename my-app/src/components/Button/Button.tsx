@@ -1,6 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
-import './Button.scss';
+import styles from './Button.module.scss';
 import Text from '../Text/Text';
 import Loader from '../Loader/Loader';
 
@@ -11,26 +10,28 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const Button: React.FC<ButtonProps> = ({ loading = false, disabled = false, children, className, ...props }) => {
-  const buttonClass = classNames('button', className, {
-    'button-loading': loading,
-    'button-disabled': disabled,
-  });
-
-  const buttonText = (
-    <Text tag="div" view="button">
-      {children}
-    </Text>
-  );
-
   return (
-    <button className={buttonClass} disabled={loading || disabled} {...props}>
+    <button
+      className={`
+        ${styles.button} 
+        ${className || ''} 
+        ${loading ? styles['button-loading'] : ''} 
+        ${disabled ? styles['button-disabled'] : ''}
+      `}
+      disabled={loading || disabled}
+      {...props}
+    >
       {loading ? (
         <>
           <Loader size="s" color="#FFFFFF" />
-          {buttonText}
+          <Text tag="div" view="button">
+            {children}
+          </Text>
         </>
       ) : (
-        buttonText
+        <Text tag="div" view="button">
+          {children}
+        </Text>
       )}
     </button>
   );

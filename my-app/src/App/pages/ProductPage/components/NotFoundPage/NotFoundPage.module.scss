@@ -1,0 +1,114 @@
+@import "styles/variables";
+
+.not-found-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  background-color: #f8f9fa;
+
+  .error-code,
+  .title,
+  .message,
+  .home-button {
+    font-family: sans-serif;
+  }
+
+  .error-code {
+    font-size: 6rem;
+    font-weight: bold;
+    color: $color-brand;
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    font-size: 1.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .message {
+    font-size: 1.125rem;
+    color: $text-secondary;
+    max-width: 32rem;
+    margin-bottom: 2rem;
+  }
+
+  .home-button {
+    padding: 0.75rem 1.5rem;
+    background-color: $color-brand;
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+}
+
+/* Animations */
+.animate-drop {
+  animation: dropIn 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-bounce {
+  animation: bounce 3s ease-in-out infinite;
+}
+
+.hover-pulse:hover {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes dropIn {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+  }
+}

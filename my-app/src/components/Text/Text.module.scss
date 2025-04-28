@@ -68,16 +68,6 @@
   }
 }
 
-.nav {
-  &:hover {
-    color: $color-brand;
-    text-decoration: underline;
-    text-decoration-thickness: 3px;
-    text-underline-offset: 40px;
-    overflow: visible;
-  }
-}
-
 p {
   display: -webkit-box;
   -webkit-box-orient: vertical;

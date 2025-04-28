@@ -41,4 +41,8 @@ export default class QueryParamsStore {
     this._search = qs.stringify(this._params);
     window.history.replaceState(null, '', `?${this._search}`);
   }
+
+  destroy() {
+    // Cleanup logic if needed
+  }
 }

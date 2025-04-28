@@ -1,8 +1,6 @@
 import * as React from 'react';
-import classNames from 'classnames';
-import './Icon.scss';
+import styles from './Icon.module.scss';
 
-// Выносим enum цветов
 export enum IconColor {
   Primary = 'primary',
   Secondary = 'secondary',
@@ -11,13 +9,12 @@ export enum IconColor {
   White = 'white',
 }
 
-// Конфигурация соответствия цветов классам
 const colorToClassMap: Record<IconColor, string> = {
-  [IconColor.Primary]: 'icon-primary',
-  [IconColor.Secondary]: 'icon-secondary',
-  [IconColor.Accent]: 'icon-accent',
-  [IconColor.Disabled]: 'icon-disabled',
-  [IconColor.White]: 'icon-white',
+  [IconColor.Primary]: styles['icon-primary'],
+  [IconColor.Secondary]: styles['icon-secondary'],
+  [IconColor.Accent]: styles['icon-accent'],
+  [IconColor.Disabled]: styles['icon-disabled'],
+  [IconColor.White]: styles['icon-white'],
 };
 
 export type IconProps = React.SVGAttributes<SVGElement> & {
@@ -36,7 +33,7 @@ const Icon: React.FC<React.PropsWithChildren<IconProps>> = ({
   ...props
 }) => {
   const colorClass = color ? colorToClassMap[color] : 'currentColor';
-  const combinedClassName = classNames('icon', className, colorClass);
+  const combinedClassName = `${styles.icon} ${className} ${colorClass}`;
 
   return <svg className={combinedClassName} width={width} height={height} {...props} />;
 };

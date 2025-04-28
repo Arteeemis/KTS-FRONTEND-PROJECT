@@ -1,22 +1,15 @@
 import React from 'react';
-import './Card.scss';
+import styles from './Card.module.scss';
 import Text from '../Text/Text';
 
 export type CardProps = {
   className?: string;
-
   image: string;
-
   captionSlot?: React.ReactNode;
-
   title: React.ReactNode;
-
   subtitle: React.ReactNode;
-
   contentSlot?: React.ReactNode;
-
   onClick?: React.MouseEventHandler;
-
   actionSlot?: React.ReactNode;
 };
 
@@ -30,27 +23,27 @@ const Card: React.FC<CardProps> = ({
   onClick,
   actionSlot,
 }) => (
-  <div className={`card ${className}`} onClick={onClick}>
-    <img src={image} alt="card-image" className="card-image" />
-    <div className="card-content">
-      <div className="card-body">
+  <div className={`${styles.card} ${className || ''}`} onClick={onClick}>
+    <img src={image} alt="card-image" className={styles['card-image']} />
+    <div className={styles['card-content']}>
+      <div className={styles['card-body']}>
         {captionSlot && (
           <Text tag="p" color="secondary" view="p-14">
             {captionSlot}
           </Text>
         )}
         {title && (
-          <Text tag="p" data-testid="text" className="card-title" weight="bold" view="p-20" color="primary">
+          <Text tag="p" data-testid="text" className={styles['card-title']} weight="bold" view="p-20" color="primary">
             {title}
           </Text>
         )}
         {subtitle && (
-          <Text tag="p" data-testid="text" className="card-subtitle" color="secondary" view="p-16">
+          <Text tag="p" data-testid="text" className={styles['card-subtitle']} color="secondary" view="p-16">
             {subtitle}
           </Text>
         )}
       </div>
-      <div className="card-button">
+      <div className={styles['card-button']}>
         {contentSlot && (
           <Text tag="p" weight="bold" view="p-18" color="primary">
             {contentSlot}

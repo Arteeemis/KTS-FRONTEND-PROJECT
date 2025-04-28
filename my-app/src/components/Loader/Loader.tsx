@@ -1,5 +1,5 @@
 import React from 'react';
-import './Loader.scss';
+import styles from './Loader.module.scss';
 
 export type LoaderProps = {
   size?: 's' | 'm' | 'l';
@@ -13,7 +13,7 @@ const Loader: React.FC<LoaderProps> = ({ size = 'l', className = '', color = '#5
       case 's':
         return (
           <svg
-            className={`loader-container ${className}`}
+            className={`${styles['loader-container']} ${styles.rotate} ${className}`}
             data-testid="loader"
             width="24"
             height="24"
@@ -30,7 +30,7 @@ const Loader: React.FC<LoaderProps> = ({ size = 'l', className = '', color = '#5
       case 'm':
         return (
           <svg
-            className={`loader-container ${className}`}
+            className={`${styles['loader-container']} ${styles.rotate} ${className}`}
             data-testid="loader"
             width="48"
             height="48"
@@ -48,7 +48,7 @@ const Loader: React.FC<LoaderProps> = ({ size = 'l', className = '', color = '#5
       default:
         return (
           <svg
-            className={`loader-container ${className}`}
+            className={`${styles['loader-container']} ${styles.rotate} ${className}`}
             data-testid="loader"
             width="60"
             height="60"
