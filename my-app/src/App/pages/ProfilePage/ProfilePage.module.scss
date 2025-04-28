@@ -1,0 +1,113 @@
+@import "styles/variables";
+
+.profile-container {
+  margin-top: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+
+  .name {
+    font-size: 38px;
+    font-weight: 300;
+    color: $text-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+  }
+
+  .email {
+    font-size: 32px;
+    font-weight: 400;
+    color: $color-brand;
+    margin-bottom: 40px;
+    line-height: 1.2;
+  }
+
+  .logout {
+    width: 300px;
+  }
+
+  .login {
+    margin-top: 45px;
+    width: 350px;
+  }
+
+  .field {
+    margin: 20px;
+  }
+
+  .input {
+    width: 350px;
+    background-color: $background-color;
+  }
+
+  .register {
+    text-align: center;
+    margin-top: 20px;
+    width: 350px;
+    &-link {
+      margin: 0 5px 0 5px;
+      text-decoration: none;
+      color: $color-brand;
+    }
+  }
+}
+
+// Animation classes
+.animate-drop {
+  animation: dropIn 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes dropIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.notification {
+  font-family: "Roboto", sans-serif;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 24px;
+  color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: fadeIn 1s ease-out;
+
+  &.success {
+    background-color: $color-brand;
+  }
+
+  &.error {
+    background-color: #90251d;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

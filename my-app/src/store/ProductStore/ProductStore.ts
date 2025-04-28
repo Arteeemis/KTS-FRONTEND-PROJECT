@@ -44,6 +44,10 @@ export default class ProductStore {
   get productList(): Product[] {
     return this.products.order.map((id) => this.products.entities[id]);
   }
+
+  destroy() {
+    // Cleanup logic if needed
+  }
 }
 
 export const productStore = new ProductStore();

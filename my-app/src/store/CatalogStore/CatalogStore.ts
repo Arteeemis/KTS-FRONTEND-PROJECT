@@ -1,19 +1,50 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, Query } from 'firebase/firestore';
 import { db } from '../../firestore';
 import { Product } from '../../entities/product/types';
+import { Option } from 'components/MultiDropdown';
 
 export default class CatalogStore {
   products: Product[] = [];
-  loading = false;
+  loading: boolean = false;
   error: Error | null = null;
+
+  searchValue: string = '';
+  selectedOptions: Option[] = [];
+  currentPage: number = 1;
+  postsPerPage: number = 6;
+  showSkeleton: boolean = true;
 
   constructor() {
     makeAutoObservable(this);
-    this.fetchAllProducts();
   }
 
-  async fetchAllProducts() {
+  get currentPosts(): Product[] {
+    const lastIndex = this.currentPage * this.postsPerPage;
+    const firstIndex = lastIndex - this.postsPerPage;
+    return this.products.slice(firstIndex, lastIndex);
+  }
+
+  setSearchValue(value: string) {
+    this.searchValue = value;
+  }
+
+  setSelectedOptions(options: Option[]) {
+    this.selectedOptions = options;
+  }
+
+  setCurrentPage(page: number) {
+    this.currentPage = page;
+  }
+
+  setPostsPerPage(count: number) {
+    this.postsPerPage = count;
+  }
+
+  setShowSkeleton(value: boolean) {
+    this.showSkeleton = value;
+  }
+  async fetchAllProducts(): Promise<void> {
     this.loading = true;
     this.error = null;
 
@@ -28,7 +59,7 @@ export default class CatalogStore {
       runInAction(() => {
         this.products = productList;
       });
-    } catch (e) {
+    } catch (e: unknown) {
       runInAction(() => {
         this.error = e instanceof Error ? e : new Error('Failed to fetch products');
       });
@@ -39,13 +70,13 @@ export default class CatalogStore {
     }
   }
 
-  async searchProducts(searchValue: string, categoryKeys: string[]) {
+  async searchProducts(searchValue: string, categoryKeys: string[]): Promise<void> {
     this.loading = true;
     this.error = null;
 
     try {
       const productsCollection = collection(db, 'Products');
-      let firestoreQuery = query(productsCollection);
+      let firestoreQuery: Query = query(productsCollection);
 
       if (searchValue) {
         firestoreQuery = query(
@@ -68,7 +99,7 @@ export default class CatalogStore {
       runInAction(() => {
         this.products = productList;
       });
-    } catch (e) {
+    } catch (e: unknown) {
       runInAction(() => {
         this.error = e instanceof Error ? e : new Error('Failed to fetch products');
       });
@@ -77,6 +108,10 @@ export default class CatalogStore {
         this.loading = false;
       });
     }
+  }
+
+  destroy(): void {
+    // Cleanup logic if needed
   }
 }
 

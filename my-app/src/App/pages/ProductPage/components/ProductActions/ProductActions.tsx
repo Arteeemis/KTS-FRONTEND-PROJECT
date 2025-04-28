@@ -2,6 +2,7 @@ import React from 'react';
 import Text from 'components/Text';
 import Button from 'components/Button';
 import { Product } from 'entities/product/types';
+import styles from '../../ProductPage.module.scss';
 
 interface ProductActionsProps {
   product: Product;
@@ -9,12 +10,12 @@ interface ProductActionsProps {
 
 const ProductActions: React.FC<ProductActionsProps> = ({ product }) => (
   <>
-    <Text view="title" className="product-details__price">
+    <Text view="title" className={styles['product-details__price']}>
       {product.price}
     </Text>
-    <div className="product-details__actions">
+    <div className={styles['product-details__actions']}>
       <Button>Buy Now</Button>
-      <Button className="product-details__add-button">Add to Cart</Button>
+      <Button className={styles['product-details__add-button']}>Add to Cart</Button>
     </div>
   </>
 );

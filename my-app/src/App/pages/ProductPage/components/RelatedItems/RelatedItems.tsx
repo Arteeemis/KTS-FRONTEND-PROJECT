@@ -1,18 +1,20 @@
+import React from 'react';
 import Text from 'components/Text';
 import Button from 'components/Button';
 import Card from 'components/Card';
 import { Product } from 'entities/product/types';
+import styles from '../../ProductPage.module.scss';
 
 interface RelatedItemsProps {
   products: Product[];
 }
 
 const RelatedItems: React.FC<RelatedItemsProps> = ({ products }) => (
-  <div className="related-products">
-    <Text tag="h2" view="title" className="related-products__title">
+  <div className={styles['related-products']}>
+    <Text tag="h2" view="title" className={styles['related-products__title']}>
       Related Items
     </Text>
-    <div className="related-products__grid">
+    <div className={styles['related-products__grid']}>
       {products.map((product) => (
         <Card
           key={product.id}

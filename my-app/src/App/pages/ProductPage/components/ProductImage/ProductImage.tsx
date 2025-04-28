@@ -1,32 +1,14 @@
-import ArrowDownIcon from 'components/icons/ArrowDownIcon';
-import { IconColor } from 'components/icons/Icon';
+import React from 'react';
 import { Product } from 'entities/product/types';
+import styles from '../../ProductPage.module.scss';
 
 interface ProductImageProps {
   product: Product;
 }
 
 const ProductImage: React.FC<ProductImageProps> = ({ product }) => (
-  <div className="product-details__image">
-    <img className="product-details__image-img" src={product.image} />
-    <div className="product-details__controls">
-      <button className="product-details__control-button">
-        <ArrowDownIcon
-          className="product-details__control-icon product-details__control-icon--prev"
-          width={30}
-          height={40}
-          color={IconColor.White}
-        />
-      </button>
-      <button className="product-details__control-button">
-        <ArrowDownIcon
-          className="product-details__control-icon product-details__control-icon--next"
-          width={30}
-          height={40}
-          color={IconColor.White}
-        />
-      </button>
-    </div>
+  <div className={styles['product-details__image']}>
+    <img className={styles['product-details__image-img']} src={product.image} alt={product.title} />
   </div>
 );
 
